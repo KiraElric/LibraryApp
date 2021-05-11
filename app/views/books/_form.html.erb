@@ -33,22 +33,22 @@
 
   <div class="field">
     <%= form.label :genre %>
-    <%= form.number_field :genre %>
+    <%= form.select :genre, @genres %> <!-- Aqui llamamos la variable del metodo set_genrer definido en el controlador de Book -->
   </div>
 
   <div class="field">
     <%= form.label :language %>
-    <%= form.number_field :language %>
+    <%= form.select :language, @languages %> <!-- Aqui llamamos la variable del metodo set_languages definido en el controlador de Book -->
+  </div>
+
+  <div class="field">
+    <%= form.label :publisher_id %>
+    <%= form.select :publisher_id, @publishers %>
   </div>
 
   <div class="field">
     <%= form.label :pages %>
     <%= form.number_field :pages %>
-  </div>
-
-  <div class="field">
-    <%= form.label :publisher_id %>
-    <%= form.text_field :publisher_id %>
   </div>
 
   <div class="actions">

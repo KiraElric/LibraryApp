@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   before_action :set_book, only: %i[ show edit update destroy ]
-
+  before_action :set_genres, :set_languages, :set_publishers, only: %i[ new edit ] 
   # GET /books or /books.json
   def index
     @books = Book.all
@@ -62,6 +62,18 @@ class BooksController < ApplicationController
       @book = Book.find(params[:id])
     end
 
+    def set_genres #De esta forma traemos la lista del campo genrer del modelo Book en el controlador y por medio de la variable la llamamos en la vista.
+      @genres = Book.genres.map {|k,v| [k, v]}
+    end
+
+    def set_languages #De esta forma traemos la lista del campo language del modelo Book en el controlador y por medio de la variable la llamamos en la vista.
+      @languages = Book.languages.map {|k,v| [k, v]}
+    end
+
+    def set_publishers #De esta forma traemos la lista del modelo publisher en el controlador y por medio de la variable la llamamos en la vista.
+      @publishers = Publisher.pluck(:name, :id)
+    end
+    
     # Only allow a list of trusted parameters through.
     def book_params
       params.require(:book).permit(:title, :isbn, :stock, :edition_number, :genre, :language, :pages, :publisher_id)
