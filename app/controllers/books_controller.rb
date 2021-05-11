@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
   before_action :set_book, only: %i[ show edit update destroy ]
-  before_action :set_genres, :set_languages, :set_publishers, only: %i[ new edit ] 
+  before_action :set_genres, :set_languages, :set_publishers, only: %i[ new edit ]
+
   # GET /books or /books.json
   def index
     @books = Book.all
@@ -67,13 +68,13 @@ class BooksController < ApplicationController
     end
 
     def set_languages #De esta forma traemos la lista del campo language del modelo Book en el controlador y por medio de la variable la llamamos en la vista.
-      @languages = Book.languages.map {|k,v| [k, v]}
+      @languages = Book.languages.map {|k,v| [k, v]} #Languages al ser un atributo de libro, es una colección de valores posibles para este basada en un enum, por lo que lo lleva a un arreglo por medio de un map
     end
 
     def set_publishers #De esta forma traemos la lista del modelo publisher en el controlador y por medio de la variable la llamamos en la vista.
-      @publishers = Publisher.pluck(:name, :id)
+      @publishers = Publisher.pluck(:name, :id)#Publisher al ser un modelo, una coleccion de ActiveRecord, con pluck se hace un ordenamiento según los valores que se desean y en la prioridad en que se desea en forma de array (No se puede usar en Arreglos)
     end
-    
+
     # Only allow a list of trusted parameters through.
     def book_params
       params.require(:book).permit(:title, :isbn, :stock, :edition_number, :genre, :language, :pages, :publisher_id)
