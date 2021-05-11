@@ -72,6 +72,7 @@ class BooksController < ApplicationController
     end
 
     def set_publishers #De esta forma traemos la lista del modelo publisher en el controlador y por medio de la variable la llamamos en la vista.
+      #@publishers = Publisher.all.map {|p| [p.name, p.id]}
       @publishers = Publisher.pluck(:name, :id)#Publisher al ser un modelo, una coleccion de ActiveRecord, con pluck se hace un ordenamiento según los valores que se desean y en la prioridad en que se desea en forma de array (No se puede usar en Arreglos)
     end
 
