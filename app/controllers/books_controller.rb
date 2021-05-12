@@ -64,11 +64,11 @@ class BooksController < ApplicationController
     end
 
     def set_genres #De esta forma traemos la lista del campo genrer del modelo Book en el controlador y por medio de la variable la llamamos en la vista.
-      @genres = Book.genres.map {|k,v| [k, v]}
+      @genres = Book.genres.keys
     end
 
     def set_languages #De esta forma traemos la lista del campo language del modelo Book en el controlador y por medio de la variable la llamamos en la vista.
-      @languages = Book.languages.map {|k,v| [k, v]} #Languages al ser un atributo de libro, es una colección de valores posibles para este basada en un enum, por lo que lo lleva a un arreglo por medio de un map
+      @languages = Book.languages.keys #Languages al ser un atributo de libro, es una colección de valores posibles para este basada en un enum, por lo que lo lleva a un arreglo por medio de traer las llaves del hash
     end
 
     def set_publishers #De esta forma traemos la lista del modelo publisher en el controlador y por medio de la variable la llamamos en la vista.
