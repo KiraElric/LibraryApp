@@ -40,9 +40,9 @@
   <%= @book.publisher %>
 </p>
 
-<% if @book.authors.present? %> <!-- Consultar si el libro tiene authores, de ser true muestra lo de abajo, si no lo oculta -->
+<% if @book.authors.present? %><!-- Consultar si el libro tiene authores, de ser true muestra lo de abajo, si no lo oculta -->
   <ul>
-    <% @book.authors.each do |author| %>
+    <% @book.authors.each do |author| %><!-- Lista los autores que pertenecen a este libro -->
       <li><%= author.full_name %></li>
     <% end %>
   </ul>
