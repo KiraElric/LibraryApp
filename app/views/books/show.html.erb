@@ -22,12 +22,12 @@
 
 <p>
   <strong>Genre:</strong>
-  <%= @book.genre %>
+  <%= @book.genre.capitalize %>
 </p>
 
 <p>
   <strong>Language:</strong>
-  <%= @book.language %>
+  <%= @book.language.capitalize %>
 </p>
 
 <p>
@@ -39,6 +39,14 @@
   <strong>Publisher:</strong>
   <%= @book.publisher %>
 </p>
+
+<% if @book.authors.present? %> <!-- Consultar si el libro tiene authores, de ser true muestra lo de abajo, si no lo oculta -->
+  <ul>
+    <% @book.authors.each do |author| %>
+      <li><%= author.full_name %></li>
+    <% end %>
+  </ul>
+<% end %>
 
 <%= link_to 'Edit', edit_book_path(@book) %> |
 <%= link_to 'Back', books_path %>

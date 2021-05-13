@@ -47,6 +47,13 @@
   </div>
 
   <div class="field">
+    <%= form.label :author_ids %>
+    <%= form.collection_check_boxes(:author_ids, @authors, :id, :full_name) do |b|
+      b.label(:"data-value" => b.value) { b.check_box + b.text } 
+    end %>
+  </div>
+
+  <div class="field">
     <%= form.label :pages %>
     <%= form.number_field :pages %>
   </div>

@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
   before_action :set_book, only: %i[ show edit update destroy ]
-  before_action :set_genres, :set_languages, :set_publishers, only: %i[ new edit ]
+  before_action :set_genres, :set_languages, :set_publishers, only: %i[ new edit ] #Listar los generos y lenguajes existentes en las vistas de new y edit
+  before_action :set_authors, only: %i[ new edit ] #Listar los autores existentes en las vistas de new y edit
 
   # GET /books or /books.json
   def index
@@ -76,8 +77,12 @@ class BooksController < ApplicationController
       @publishers = Publisher.pluck(:name, :id)#Publisher al ser un modelo, una coleccion de ActiveRecord, con pluck se hace un ordenamiento según los valores que se desean y en la prioridad en que se desea en forma de array (No se puede usar en Arreglos)
     end
 
+    def set_authors
+      @authors = Author.all
+    end
+
     # Only allow a list of trusted parameters through.
     def book_params
-      params.require(:book).permit(:title, :isbn, :stock, :edition_number, :genre, :language, :pages, :publisher_id)
+      params.require(:book).permit(:title, :isbn, :stock, :edition_number, :genre, :language, :pages, :publisher_id, author_ids: [])
     end
 end
