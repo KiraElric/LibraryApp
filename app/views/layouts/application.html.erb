@@ -10,6 +10,20 @@
   </head>
 
   <body>
+    <%= render "shared/navbar" %>
+
+    <% if flash[:notice]%>
+      <div class="notification py-3 text-white bg-info">
+        <p class="notice"><%= notice %></p>
+      </div>
+    <% end %>
+
+    <% if flash[:alert]%>
+      <div class="notification py-3 text-white bg-danger">
+        <p class="alert"><%= alert %></p>
+      </div>
+    <% end %>
+    
     <%= yield %>
   </body>
 </html>
